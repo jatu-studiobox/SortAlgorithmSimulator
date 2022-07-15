@@ -3,8 +3,9 @@
     const btnReset = document.querySelector("#btnReset");
     const inputSort = document.querySelector("#inputSort");
     const output = document.querySelector("#output");
-    const toastLiveExample = document.getElementById('liveToast')
+    const toastNotify = document.querySelector("#toastNotify");
 
+    let sourceArray = [];
     let gArray = [];
 
     function delay(time) {
@@ -12,9 +13,9 @@
     }
 
     function createArray(size) {
-        gArray = [];
+        sourceArray = [];
         for (let i = 0; i < size; i++) {
-            gArray.push(Math.floor(Math.random() * 100));
+            sourceArray.push(Math.floor(Math.random() * 100));
         }
     }
 
@@ -23,15 +24,16 @@
         arr.forEach(item => {
             allItems += `<div class="card text-bg-secondary" style="width: 4rem;"><div class="card-body text-center">${item}</div></div>`;
         });
-        inputSort.innerHTML = `<div class="hstack gap-3">${allItems}</div>`;
+        inputSort.innerHTML = `<div class="card card-body bg-light mb-3"><div class="hstack gap-3">${allItems}</div></div>`;
     }
 
     function setBeginOutput() {
         output.innerHTML = '<label class="form-label h3">....</label>';
     }
 
-    function clearOutput() {
+    async function clearOutput() {
         output.innerHTML = '';
+        await delay(500);
     }
 
     function displayOutput(elements) {
@@ -147,7 +149,7 @@
     function presentQuickSort(arrTemp, arrResult, start, end, pivotIndex, round) {
         let allProcessItems = "";
         let allResultItems = "";
-        console.log("=== Start : ", start);
+        
         // generate process
         arrTemp.forEach((item, index) => {
             if (index === end) {
@@ -258,25 +260,14 @@
     }
 
     function partition(arr, start, end) {
-        console.log("----> Start Partition");
-        console.log("arr: ", arr);
-        console.log("start: ", start);
-        console.log("end: ", end);
-
         // Taking the last element as the pivot
         const pivotValue = arr[end];
         let pivotIndex = start;
-        console.log("pivotValue: ", pivotValue);
-        console.log("pivotIndex: ", pivotIndex);
 
         for (let i = start; i < end; i++) {
-            console.log("arr[i]: ", arr[i]);
-            console.log("pivotValue: ", pivotValue);
             if (arr[i] < pivotValue) {
-                console.log("Before swap: ", arr);
                 // Swapping elements
                 [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
-                console.log("After swap: ", arr);
                 // Moving to next element
                 pivotIndex++;
             }
@@ -285,7 +276,7 @@
 
         // Putting the pivot value in the middle
         [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
-        console.log("----> End Partition");
+
         return pivotIndex;
     };
 
@@ -298,8 +289,6 @@
         // Adding the entire initial array as an "unsorted subarray"
         stack.push(0);
         stack.push(gArray.length - 1);
-
-        console.log("stack: ", stack);
 
         // There isn't an explicit peek() function
         // The loop repeats as long as we have unsorted subarrays
@@ -316,7 +305,6 @@
             // If there are unsorted elements to the "left" of the pivot,
             // we add that subarray to the stack so we can sort it later
             if (pivotIndex - 1 > start) {
-                console.log("do left");
                 stack.push(start);
                 stack.push(pivotIndex - 1);
             }
@@ -324,7 +312,6 @@
             // If there are unsorted elements to the "right" of the pivot,
             // we add that subarray to the stack so we can sort it later
             if (pivotIndex + 1 < end) {
-                console.log("do right");
                 stack.push(pivotIndex + 1);
                 stack.push(end);
             }
@@ -359,23 +346,29 @@
     }
 
     async function runSort() {
-        clearOutput();
+        await clearOutput();
         setDisabledButtons(true);
+        // set gArray = sourceArray
+        gArray = [...sourceArray];
         await sort();
-        const toast = new bootstrap.Toast(toastLiveExample);
+        const toast = new bootstrap.Toast(toastNotify);
         toast.show();
         setDisabledButtons(false);
     }
 
     function reset() {
         createArray(10);
-        console.log("start array: ", gArray);
-        setDisplayInput(gArray);
+        console.log("start array: ", sourceArray);
+        setDisplayInput(sourceArray);
         setBeginOutput();
     }
 
     function run() {
         reset();
+        const choiceRadio = document.querySelectorAll('input[name="choiceSort"]');
+        choiceRadio.forEach(item => {
+            item.addEventListener("click", setBeginOutput);
+        });
         btnRunSort.addEventListener("click", runSort);
         btnReset.addEventListener("click", reset);
     }
