@@ -6,6 +6,12 @@ Simplified sorting algorithms simulator on web page by using vanilla JavaScript.
 ## Use at
 Sorting Algoithms Simulator at [https://jatu-studiobox.github.io/SortAlgorithmSimulator/](https://jatu-studiobox.github.io/SortAlgorithmSimulator/)
 
+## Tech stack
+* HTML
+* JavaScript
+* Bootstrap
+* FontAwesome
+
 ## References
 * [Wikipedia: Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
 * [Wikipedia: Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
