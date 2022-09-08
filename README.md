@@ -7,7 +7,7 @@ Simplified sorting algorithms simulator on web page by using vanilla JavaScript.
 Sorting Algoithms Simulator at [https://jatu-studiobox.github.io/SortAlgorithmSimulator/](https://jatu-studiobox.github.io/SortAlgorithmSimulator/)
 
 ## References
-* [Wiki: Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
-* [Wiki: Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
-* [Wiki: Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
-* [Wiki: Quick Sort](https://en.wikipedia.org/wiki/Quicksort)
+* [Wikipedia: Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
+* [Wikipedia: Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
+* [Wikipedia: Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
+* [Wikipedia: Quick Sort](https://en.wikipedia.org/wiki/Quicksort)
