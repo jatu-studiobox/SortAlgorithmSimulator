@@ -12,6 +12,9 @@ Sorting Algoithms Simulator at [https://jatu-studiobox.github.io/SortAlgorithmSi
 * Bootstrap
 * FontAwesome
 
+## Issues
+If you have any issues, please don't mind to create. Thank you very much. 😊
+
 ## References
 * [Wikipedia: Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
 * [Wikipedia: Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
